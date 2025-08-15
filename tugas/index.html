@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">0
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>latihan</title>
+</head>
+
+<body>
+  <h1>DATA SISWA</h1>
+  <form action="" id="container">
+    <label for="text">write youre name</label><br>
+    <input type="text" id="name"><br>
+    <label for="text">youre hobies</label><br>
+    <input type="text" id="hobi"><br>
+    <label for="text">youre age</label><br>
+    <input type="text" id="umur"><br>
+    <button type="submit">Enter</button>
+  </form>
+
+  <div id="tablecontainer">
+    <table id="dataTable" border="1px">
+      <thead>
+        <tr>
+          <th>Data siswa </th>
+          <th>hobi</th>
+          <th>umur</th>
+
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+  <script>
+
+    let datanya = [
+      {
+        name: "monika",
+        hobi: "reading",
+        umur: 16,
+
+      },
+      {
+        name: "khelsya",
+        hobi: "writing",
+        umur: 17,
+      },
+      {
+        name: "wulan",
+        hobi: "dance",
+        umur: 18,
+
+      }
+
+    ];
+    function displayData(data){
+      const tableBody = document.getElementById("tableBody");
+      tableBody.innerHTML = "";
+
+      data.forEach(item => {
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+     <td>${item.name}</td>
+     <td>${item.hobi}</td>
+     <td>${item.umur}</td>
+`;
+        tableBody.appendChild(row);
+      });
+
+    }
+
+
+    displayData(datanya);
+
+
+    const wadah = document.getElementById("container");
+    wadah.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value
+      const hobi = document.getElementById("hobi").value
+      const umur = parseInt (document.getElementById("umur").value)
+
+      let newObject = {
+        name: name,
+        hobi: hobi,
+        umur: umur,
+
+
+      };
+
+
+
+      datanya = [...datanya, newObject]
+      displayData(datanya);
+
+      document.getElementById('name').value = "";
+      document.getElementById('hobi').value = "";
+      document.getElementById('umur').value = "";
+    });
+
+
+  </script>
+</body>
+
+</html>
